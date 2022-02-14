@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/files/animate.css">
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/fontawesome-all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+    <link rel="stylesheet" href="css/fontawesome-all.css">
+    <script type="text/javascript">
+        
+        $(document).ready(function() {
+            $('.fa-star').mouseover(function() {
+                $(this).prevAll().andSelf().addClass('checked');
+                $(this).nextAll().removeClass('checked');
+                rat = $(this).prevAll().length+1;
+                $("rating").val(rat);
+                alert(rat);
+            });
+            
+            $("#recordbp").click(function() {
+
+                $qs2 = $("#bpform").serialize();
+                        $url = "record_bp.php?" + $qs2;
+                        //alert($url);
+                        $.get($url, function(response) {
+                            //alert(response);
+                            $("#bpresult").html(response);
+                            doReset();
+                        });
+            });
+            
+            $("#recordSugar").click(function() {
+
+                $qs3 = $("#sugarform").serialize();
+                        $url = "record_sugar.php?" + $qs3;
+                        //alert($url);
+                        $.get($url, function(response) {
+                            //alert(response);
+                            $("#sugarresult").html(response);
+                            doReset();
+                        });
+            });
+            
+            $("#savereview").click(function() {
+
+                $qs3 = $("#reviewform").serialize();
+                        $url = "review.php?" + $qs3;
+                        //alert($url);
+                        $.get($url, function(response) {
+                            //alert(response);
+                            $("#reviewresult").html(response);
+                            doReset();
+                        });
+            });
+            
+        });
+        
+        function doReset() {
+            document.getElementById("pid").value = null;
+            document.getElementById("rpid").value = null;
+            document.getElementById("low").value = null;
+            document.getElementById("high").value = null;
+            document.getElementById("dateb").value = null;
+            document.getElementById("timeb").value = null;
+            document.getElementById("fasting").value = null;
+            document.getElementById("justAte").value = null;
+            document.getElementById("after3hours").value = null;
+            document.getElementById("dates").value = null;
+            document.getElementById("times").value = null;
+            document.getElementById("hospital").value = null;
+            document.getElementById("doc").value = null;
+            document.getElementById("rating").value = null;
+            document.getElementById("reviewsss").value = null;
+        }
+    </script>
+        <script type="text/javascript">
+
+        new WOW().init();
+        function gototop(){
+            $("html,body").animate({scrollTop:$("#anim").offset().top-150},"slow");
+            $("#topbtn").css("display","none");
+        }
+
+    </script>
+    <style>
+        @media only screen and (min-width: 996px) {
+            #services {
+                margin-top: 80px;
+            }
+        }
+
+        #cards {
+            transition: ease all 1s;
+        }
+
+        #cards:hover {
+            background-color: lightgray;
+            font: black;
+            transform: scale(1.02);
+            transition: ease all 1s;
+        }
+
+        #services {
+            font-family: monospace;
+        }
+
+        /*
+        #div {
+            background-image: url(../../Data/cancer-registry.jpg);
+            background-size: contain;
+            background-attachment: fixed;
+        }
+*/
+
+        #link {
+            text-decoration: underline;
+        }
+
+        #link:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .checked {
+            color: orange;
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav class="fixed-top navbar-expand-md bg-info">
+        <div class="row bg-primary container-fluid">
+            <div id="main_menu" class="navbar-fixed-top">
+                aaaa
+            </div>
+        </div>
+        <div class="text-md-center">
+            Title Pic
+        </div>
+    </nav>
+    <br>
+    <br>
+    <div class="container-fluid text-md-center">
+        <div class="row bg-primary">
+            <div class="col-md-12">
+                <div class="text-md-center display-4">
+                    Patient Dashboard
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 service-area" style="opacity: 0.9" id="div">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card bg-dark text-white animated fadeIn">
+                        <img class="card-img" src="../../Data/u-services.png" alt="Card image">
+                        <div class="card-img-overlay align-text-bottom animated bounceIn">
+                            <h3 class="card-title font-weight-bold text-md-center display-4" id="services">OUR SERVICES</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card-deck">
+                <div class="card text-center" style="border: 5px" id="cards">
+                    <div class="align-self-center">
+                        <div class="animated fadeInLeftBig" style="height: 100px; width: 100px; float: left;">
+                            <img class="card-img-top" src="../../Data/icons/2774749-512.png" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class="animated fadeInLeftBig" style="float: left;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Patient Profile</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-primary" id="link">Save your profile</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card text-center" style="border: 0px" id="cards" data-toggle="modal" data-target="#recordsugar">
+                    <div class="align-self-center">
+                        <div class=" animated fadeInDownBig" style="height: 100px; width: 100px;">
+                            <img class="card-img-top" src="../../Data/icons/25_medical-finger-glucometer-sugar-test-512%20(1).png" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class=" animated fadeInDownBig">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Record Sugar</h5>
+                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                            <p class="card-text"><small class="text-primary" id="link">Record Sugar</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card text-center " style="border: 0px" id="cards" data-target="#recordBP" data-toggle="modal">
+                    <div class="align-self-center">
+                        <div class="animated fadeInRightBig" style="height: 100px; width: 100px;">
+                            <img class="card-img-top" src="../../Data/icons/Blood_Pressure_Kit-512.png" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class="animated fadeInRightBig">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Record Blood Pressure</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            <p class="card-text"><small class="text-primary" id="link">Record Blood Pressure</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card-deck" id="anim">
+                <div class="card text-center " style="border: 0px" id="cards">
+                    <div class="align-self-center">
+                        <div class="animated fadeInLeftBig" style="height: 100px; width: 100px;">
+                            <img class="card-img-top" src="../../Data/icons/10-512.png" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class="animated fadeInLeftBig">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Chart</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-primary" id="link">View chart</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card text-center " style="border: 0px" id="cards">
+                    <div class="align-self-center">
+                        <div class="animated bounceIn" style="height: 100px; width: 100px;">
+                            <img class="card-img-top" src="../../Data/icons/1-05-512.png" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class="animated bounceIn">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Doctor Consultation</h5>
+                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                            <p class="card-text"><small class="text-primary" id="link">View/Add Consultations</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card text-center" style="border: 0px" id="cards">
+                    <div class="align-self-center">
+                        <div class=" animated fadeInRightBig" style="height: 100px; width: 100px;">
+                            <img class="card-img-top" src="../../Data/icons/Meeting_Deadlines-512.png" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class=" animated fadeInRightBig">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Appointment Schedular</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            <p class="card-text"><small class="text-primary" id="link">Schedule Appointment</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card-deck">
+                <div class="card text-center row" style="border: 0px" id="cards">
+                    <div class="align-self-center">
+                        <div class="animated fadeInLeftBig" style="height: 100px; width: 100px;">
+                            <img class="card-img-top" src="../../Data/icons/iconfinder-icon.svg" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class="animated fadeInLeftBig">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Doctor Profile</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-primary" id="link">Fill your profile</small></p>
+                            <p class="card-text"><small class="text-muted">(For doctors only)</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card text-center " style="border: 0px" id="cards" data-target="#reviews" data-toggle="modal">
+                    <div class="align-self-center">
+                        <div class="animated fadeInUpBig" style="height: 100px; width: 100px;">
+                            <img class="card-img-top" src="../../Data/icons/review-512.png" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class="animated fadeInUpBig">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Doctor Reviews</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            <p class="card-text"><small class="text-primary" id="link">Give Reviews</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+
+    <div class="modal fade" id="recordBP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="exampleModalLabel">Blood Pressure Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <form id="bpform">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="pid">Patient Id</label>
+                            <input type="text" class="form-control" id="pid" name="pid" placeholder="Fill Id">
+                        </div>
+                        <div class="form-group">
+                            <label for="low">Low</label>
+                            <input type="text" class="form-control" id="low" name="low" placeholder="required= 80">
+                        </div>
+                        <div class="form-group">
+                            <label for="high">High</label>
+                            <input type="text" class="form-control" id="high" name="high" placeholder="required= 120">
+                        </div>
+                        <div class="form-group">
+                            <label for="dateb">Date</label>
+                            <input type="date" class="form-control" id="dateb" name="dateb">
+                        </div>
+                        <div class="form-group">
+                            <label for="timeb">Time</label>
+                            <input type="time" class="form-control" id="timeb" name="timeb">
+                        </div>
+                        <center><span id="bpresult" class="text-primary"></span></center>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <center>
+                            <button type="button" class="btn btn-outline-primary" id="recordbp" name="recordbp">Save</button>
+                        </center>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="recordsugar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="exampleModalLabel">Sugar Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <form id="sugarform">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="rpid">Patient Id</label>
+                            <input type="text" class="form-control" id="rpid" name="rpid" placeholder="Fill Id">
+                        </div>
+                        <div class="form-group">
+                            <label for="fasting">Fasting</label>
+                            <input type="text" class="form-control" id="fasting" name="fasting" placeholder="80-100">
+                        </div>
+                        <div class="form-group">
+                            <label for="justAte">Just Ate</label>
+                            <input type="text" class="form-control" id="justAte" name="justAte" placeholder="170-200">
+                        </div>
+                        <div class="form-group">
+                            <label for="after3hours">After 3 hours</label>
+                            <input type="text" class="form-control" id="after3hours" name="after3hours" placeholder="120-140">
+                        </div>
+                        <div class="form-group">
+                            <label for="dates">Date</label>
+                            <input type="date" class="form-control" id="dates" name="dates">
+                        </div>
+                        <div class="form-group">
+                            <label for="times">Time</label>
+                            <input type="time" class="form-control" id="times" name="times">
+                        </div>
+                        <center><span id="sugarresult" class="text-primary"></span></center>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <center>
+                            <button type="button" class="btn btn-outline-primary" id="recordSugar" name="recordSugar">Save</button>
+                        </center>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="reviews" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="exampleModalLabel">Ratings and Reviews</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <form id="reviewform">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="hname">Hospital</label>
+                            <input type="text" class="form-control" id="hospital" name="hospital" placeholder="Fill Hospital name">
+                        </div>
+                        <div class="form-group">
+                            <label for="docname">Doctor</label>
+                            <input type="text" class="form-control" id="doc" name="doc" placeholder="Fill Doctor name">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Rating</label>
+                        </div>
+                        <div class="form-group">
+                            <span class="fa fa-star fa-2x"></span>
+                            <span class="fa fa-star fa-2x"></span>
+                            <span class="fa fa-star fa-2x"></span>
+                            <span class="fa fa-star fa-2x"></span>
+                            <span class="fa fa-star fa-2x"></span>
+                        <input type="hidden" id="rating" name="rating" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtarea" class="col-form-label">Reviews</label>
+                            <textarea class="form-control" id="reviewsss" name="reviewsss" rows="5"></textarea>
+                        </div>
+                        <div class="modal-footer bg-light">
+                            <center><span id="reviewresult" class="text-primary"></span></center>
+                            <center>
+                                <button type="button" class="btn btn-outline-primary" id="savereview" name="savereview">Save</button>
+                            </center>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <nav class="col-md-12 bg-primary">
+        Copyright
+    </nav>
+    <div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3447.883512506418!2d74.95000951508666!3d30.211871981821783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391732a4f014b8f7%3A0x7fa736d540603db!2sSun-Soft+Technologies+(+Android+Java+PHP+Angular+)!5e0!3m2!1sen!2sin!4v1530862414428" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+
+</body>
+
+</html>
